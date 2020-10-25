@@ -34,8 +34,12 @@ class enemyArray {
     setTimeout(this.createEnemy(0, 0, 100, 300), delay + 3000);
     setTimeout(this.createEnemy(0, 0, 100, 400), delay + 4000);
   }
-  // collisionCheck(x,y) {
-  //   for(let i=0;i<this.arr.length;i++)
-  //     if()
-  // }
+  collisionCheck(x,y) {
+
+    for(let i=0;i<this.arr.length;i++)
+      if(arr[i].pos.x-5<x&&arr[i].pos.x+5>x)
+        if(arr[i].pos.y-5<y&&arr[i].pos.y+5>y) {
+            
+        }
+  }
 }

@@ -1,6 +1,7 @@
 var p;
 var b;
 var bullets = [];
+let particles = [];
 let enemies;
 function setup() {
   createCanvas(670, 570);
@@ -11,6 +12,17 @@ function setup() {
 
 function draw() {
   background(50);
+  
+
+  let p1 = new Particle();
+  particles.push(p1);
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update();
+    particles[i].draw();
+    if (particles[i].die()) {
+      particles.splice(i, 2);//i부터 2개식 제거
+    }
+  }
   
   p.draw()
   p.update();
