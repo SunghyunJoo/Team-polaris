@@ -1,16 +1,12 @@
-var p
-var b
+var p;
+var b;
 var bullets = [];
-let enemyArray=[];
+let enemies;
 function setup() {
   createCanvas(670, 570);
- // bullet = new Bullet(width/2,height/2);
   frameRate(30);
-  setInterval(function(){for(let i=0;i<8;i++)
-        setTimeout(function(){enemyArray.push(new enemy(0,0,(enemyArray.length%10)*width/12+width/12,(enemyArray.length-enemyArray.length%10)/10*height/10+height/10))},250*i);
-},4000);
-p = new Player(width/2-30,height*9/10,50,50);
-//p = new Player()
+    p = new Player(width/2-30,height*9/10,50,50);
+    enemies = new enemyArray();
 }
 
 function draw() {
@@ -23,10 +19,8 @@ function draw() {
       bullets[i].draw();
       bullets[i].move()
     }
-  for(let i=0;i<enemyArray.length;i++) {
-        enemyArray[i].update();
-        enemyArray[i].display();
-    }
+    enemies.update();
+    enemies.display();
 }
 
   function keyPressed(){           
@@ -36,3 +30,8 @@ function draw() {
       bullets.push(bullet1);
     } 
     }
+
+function mousePressed() {
+    bullets.push(new Bullet(p.x+25, height-60));
+    enemies.createEnemy(0,0,100,100);
+}
