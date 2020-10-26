@@ -27,12 +27,4 @@ class enemy{
         let dy =this.pos.y + sin(this.angle)*20;
         line(this.pos.x,this.pos.y,dx,dy);
     }
-    //
-    // collisionCheck(Bullet(x,y)) {
-        //check bullet with all enemy
-        // if collide remove enemy
-        //send score value to score.js
-        //return true or false
-
-    // }
 }

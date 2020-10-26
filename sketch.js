@@ -77,5 +77,13 @@ function draw() {
   var bullet1 = new Bullet(p.x+25, height-60);
       bullets.push(bullet1);
     } 
+<<<<<<< HEAD
     
     }
+=======
+    }
+
+function mousePressed() {
+    // enemies.destroyEnemy(0);
+}
+>>>>>>> d6181f98098bf3937725ed352cee1201ee0303cf

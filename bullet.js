@@ -10,7 +10,7 @@ class Bullet
   draw()
   {
     fill(50,0,200);
-   ellipse(this.x,this.y,28,28);
+   rect(this.x,this.y,5,20);
   }
   
  
