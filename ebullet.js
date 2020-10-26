@@ -16,7 +16,7 @@ rect(this.x ,this.y,this.r,this.r);
 update(){
 this.y += this.speed;
 }
-  hits(player){
-  return collideRectRect(this.x,this.y,this.r,this.r,player.x,player.y,player.width,player.height);
-  }
+  // hits(player){
+  // return collideRectRect(this.x,this.y,this.r,this.r,player.x,player.y,player.width,player.height);
+  // }
 }
