@@ -44,6 +44,5 @@ function draw() {
     }
 
 function mousePressed() {
-    bullets.push(new Bullet(p.x+25, height-60));
-    enemies.createEnemy(0,0,100,100);
+    // enemies.destroyEnemy(0);
 }
