@@ -1,25 +1,38 @@
-class Bullet
-{
-  constructor(x,y)
-  {
+function Bullet(x,y)
+{ 
     this.x=x
     this.y=y
-    
-  }
+    this.r = 8;
+    this.toDelete = false;
   
-  draw()
+  this.draw=function()
   {
-    fill(50,0,200);
-   rect(this.x,this.y,5,20);
+    fill(255,255,200);
+   ellipse(this.x,this.y,this.r*2,this.r*2);
   }
   
  
-move(){
+  this.move=function()
+  {
   
- //this.x=this.x+this.speedX;
- this.y=this.y-5;
-}  
+  this.y=this.y-25;
   
+  }  
+  
+  this.evaporate = function() {
+    this.toDelete = true;
+  }
+  
+  this.hits=function(enemy) {
+    
+    var b = dist(this.x, this.y, enemy.pos.x, enemy.pos.y);
+    if (b < this.r + 20) {
+      return true;
+    } else {
+      return false;
+    }
+    
+  }
 
 
 }
