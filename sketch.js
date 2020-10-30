@@ -61,15 +61,21 @@ function draw() {
     
 //for (var j = 0; j < p.length; j++) {
       if (ebullets[g].hits(p)) {
-        //players[j].grow();
-        console.log("aaaa");
         
+        console.log("aaaa");
+        ebullets[g].evaporate();
         lifes.update();
       }
     //}
   
 }
 
+  for (var x1 = ebullets.length - 1; x1 >= 0; x1--) {
+    if (ebullets[x1].toDelete) {
+      ebullets.splice(x1, 1);
+    }
+  }
+  
   for (var x = bullets.length - 1; x >= 0; x--) {
     if (bullets[x].toDelete) {
       bullets.splice(x, 1);
