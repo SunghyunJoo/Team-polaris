@@ -13,13 +13,6 @@ let enemies;
 let lifes;
 let scores;
 var reset;
-function setup() {
-  createCanvas(670, 570);
-  p = new Player(width / 2 - 30, height * 9 / 10, 50, 50);
-  enemies = new enemyArray();
-  lifes = new Life();
-  scores = new Score();
-}
 
 function preload(){
   
@@ -31,6 +24,14 @@ function preload(){
 //   {bumb.push(loadImage('effect/effect'+i+'.png'))}
   
 //   
+}
+
+function setup() {
+  createCanvas(670, 570);
+  p = new Player(width / 2 - 30, height * 9 / 10, 50, 50);
+  enemies = new enemyArray();
+  lifes = new Life();
+  scores = new Score();
 }
 
 function gameover(){

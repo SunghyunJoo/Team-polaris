@@ -1,103 +1,586 @@
 class enemyArray {
   constructor() {
     this.arr = [];
-    this.presetPos = [
-      createVector(310, 100),
-      createVector(360, 100),
-      createVector(310, 150),
-      createVector(360, 150),
 
-      createVector(310, 200),
-      createVector(360, 200),
-      createVector(310, 250),
-      createVector(360, 250),
+    this.ellapsed = deltaTime;
+    this.animationFrameTime = 750;
+    this.formStep = 0;
+    this.xOffSet = -30;
+    this.stepSize = 10;
+    this.stepAmount = 12;
+    this.hoverScalar = 0;
 
-      createVector(260, 50),
-      createVector(260, 100),
-      createVector(310, 50),
-      createVector(410, 100),
-      createVector(360, 50),
-      createVector(260, 150),
-      createVector(410, 50),
-      createVector(410, 150),
+    this.updateXOffSet = this.updateSpawnOffSet;
 
-      createVector(460, 100),
-      createVector(160, 100),
-      createVector(510, 100),
-      createVector(210, 100),
-      createVector(460, 150),
-      createVector(160, 150),
-      createVector(510, 150),
-      createVector(210, 150),
+    this.blinkTime = deltaTime;
+    this.blinkState = false;
 
-      createVector(410, 200),
-      createVector(210, 200),
-      createVector(460, 200),
-      createVector(260, 200),
-      createVector(410, 250),
-      createVector(210, 250),
-      createVector(460, 250),
-      createVector(260, 250),
+    this.rotationSpeed = 5;
+    this.presetPos = [{
+        tx: 310,
+        ty: 100,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+      hoverStateXOffSet: 0,
+      },
+      {
+        tx: 360,
+        ty: 100,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 310,
+        ty: 150,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 360,
+        ty: 150,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
 
-      createVector(510, 200),
-      createVector(110, 200),
-      createVector(560, 200),
-      createVector(160, 200),
-      createVector(510, 250),
-      createVector(110, 250),
-      createVector(560, 250),
-      createVector(160, 250)
+      {
+        tx: 310,
+        ty: 200,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(270),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 360,
+        ty: 200,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(270),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 310,
+        ty: 250,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(270),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 360,
+        ty: 250,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(270),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+                      
+      {
+        tx: 260,
+        ty: 50,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 260,
+        ty: 100,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 310,
+        ty: 50,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 410,
+        ty: 100,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 360,
+        ty: 50,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 260,
+        ty: 150,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 410,
+        ty: 50,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 410,
+        ty: 150,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(360),
+        exit: radians(0),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+
+      {
+        tx: 460,
+        ty: 100,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 160,
+        ty: 100,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 510,
+        ty: 100,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 210,
+        ty: 100,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 460,
+        ty: 150,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 160,
+        ty: 150,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 510,
+        ty: 150,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 210,
+        ty: 150,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(180),
+        exit: radians(540),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: true,
+        hoverStateXOffSet: 0,
+      },
+
+      {
+        tx: 410,
+        ty: 200,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 210,
+        ty: 200,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 460,
+        ty: 200,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 260,
+        ty: 200,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 410,
+        ty: 250,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 210,
+        ty: 250,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 460,
+        ty: 250,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 260,
+        ty: 250,
+        cx: width / 2 - 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(-360),
+        rotate: radians(-this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+
+      {
+        tx: 510,
+        ty: 200,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 110,
+        ty: 200,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 560,
+        ty: 200,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 160,
+        ty: 200,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 510,
+        ty: 250,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 110,
+        ty: 250,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 560,
+        ty: 250,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
+      {
+        tx: 160,
+        ty: 250,
+        cx: width / 2 + 220,
+        cy: 300,
+        entry: radians(-90),
+        exit: radians(180),
+        rotate: radians(this.rotationSpeed),
+        invertedEntry: false,
+        hoverStateXOffSet: 0,
+      },
     ];
-    this.iterator = 0;
-    this.spacingInFormation =150;
+    for (let a of this.presetPos) {
+      a.hoverStateXOffSet = (a.tx - width / 2) / 30;
+    }
 
-    this.createFormation(width/2-50,0,1000);
-    this.createFormation(height/2+50,0,1000);
-    this.createFormation(0,height-100,3000);
-    this.createFormation(0,height-100,3000+this.spacingInFormation*4);
-    this.createFormation(width,height-100,6600);
-    this.createFormation(width,height-100,6600+this.spacingInFormation*4);
-    this.createFormation(width/2,0,10200);
-    this.createFormation(width/2,0,10200+this.spacingInFormation*4);
-    this.createFormation(width/2,0,13800);
-    this.createFormation(width/2,0,13800+this.spacingInFormation*4);
-    
+    this.iterator = 0;
+    this.spacingInFormation = 150;
+
+    this.createFormation(width / 2 - 50, 0, 1000);
+    this.createFormation(height / 2 + 50, 0, 1000);
+    this.createFormation(0, height - 100, 3000);
+    this.createFormation(0, height - 100, 3000 + this.spacingInFormation * 4);
+    this.createFormation(width, height - 100, 6600);
+    this.createFormation(width, height - 100, 6600 + this.spacingInFormation * 4);
+    this.createFormation(width / 2, 0, 10200);
+    this.createFormation(width / 2, 0, 10200 + this.spacingInFormation * 4);
+    this.createFormation(width / 2, 0, 13800);
+    this.createFormation(width / 2, 0, 13800 + this.spacingInFormation * 4);
+
   }
   update() {
+    if (this.presetPos.length == this.arr.length) {
+      if (this.arr[this.presetPos.length - 1].state == 'hovering' && this.arr[this.presetPos.length - 1].xOffSet == 0) {
+        this.updateXOffSet = this.updateHoverOffSet;
+        this.formStep = 0;
+      }
+    }
+
+    this.updateXOffSet();
+    this.updateBlinkAni();
+
     for (let a of this.arr)
       a.update();
+
+    for (let a of this.arr)
+      if (random(1) < 0.005) {
+        a.shoot();
+      }
   }
   display() {
     for (let a of this.arr)
       a.display();
-    // for (let a of this.presetPos)
-    // ellipse(a.x, a.y, 20, 20);
   }
-  createEnemy(x, y, tx, ty) {
-    this.arr.push(new enemy(x, y, tx, ty));
+  createEnemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert,itr) {
+    this.arr[itr] = new enemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert);
   }
-  createFormation(sx,sy,delay) {
+  createFormation(sx, sy, delay) {
     for (let i = 0; i < 4; i++) {
-      let x = this.presetPos[this.iterator].x;
-      let y = this.presetPos[this.iterator].y;
+      let tx = this.presetPos[this.iterator].tx;
+      let ty = this.presetPos[this.iterator].ty;
+      let cx = this.presetPos[this.iterator].cx;
+      let cy = this.presetPos[this.iterator].cy;
+      let entry = this.presetPos[this.iterator].entry;
+      let exit = this.presetPos[this.iterator].exit;
+      let rotate = this.presetPos[this.iterator].rotate;
+      let invert = this.presetPos[this.iterator].invertedEntry;
+      let xOffSet = this.xOffSet;
+      let itr = this.iterator;
+
+      this.arr[this.iterator]= new enemy(-100,-100,-100,-100,-100,-100,0,0,0,0);
       setTimeout(() => {
-        this.createEnemy(sx, sy, x,y);
-      }, i*this.spacingInFormation+delay);
+        this.createEnemy(sx, sy, tx + xOffSet, ty, cx, cy, entry, exit, rotate, invert,itr);
+      }, i * this.spacingInFormation + delay);
       this.iterator++;
     }
   }
-  collisionCheck(x,y) {
+  collisionCheck(x, y) {
     let bool = false;
-    for(let i=0;i<this.arr.length;i++)
-      if(arr[i].pos.x-5<x&&arr[i].pos.x+5>x)
-        if(arr[i].pos.y-5<y&&arr[i].pos.y+5>y) {
-            bool = true;
-            this.destroyEnemy(i);
-            break;
+    for (let i = 0; i < this.arr.length; i++)
+      if (arr[i].pos.x - 5 < x && arr[i].pos.x + 5 > x)
+        if (arr[i].pos.y - 5 < y && arr[i].pos.y + 5 > y) {
+          bool = true;
+          this.destroyEnemy(i);
+          break;
         }
     return bool;
   }
   destroyEnemy(index) {
     this.arr.splice(index, 1);
   }
+  updateSpawnOffSet() {
+    this.ellapsed += deltaTime;
+    if (this.ellapsed > this.animationFrameTime) {
+      if (this.formStep < this.stepAmount / 2) {
+        this.xOffSet += this.stepSize;
+      } else {
+        this.xOffSet -= this.stepSize;
+      }
+      this.formStep = (this.formStep + 1) % this.stepAmount;
+      this.ellapsed = 0;
+      for (let a of this.arr)
+        a.xOffSet = this.xOffSet;
+    }
+  }
+  updateHoverOffSet() {
+    this.ellapsed += deltaTime;
+    if (this.ellapsed > this.animationFrameTime) {
+      for (let a = 0; a < this.arr.length; a++) {
+        let hoverOffSet = this.presetPos[a].hoverStateXOffSet * this.hoverScalar;
+        // print(this.hoverScalar);
+        this.arr[a].xOffSet = hoverOffSet;
+      }
+      if (this.formStep < this.stepAmount / 2) {
+        this.hoverScalar++;
+      } else {
+        this.hoverScalar--;
+      }
+      this.formStep = (this.formStep + 1) % this.stepAmount;
+      this.ellapsed = 0;
+    }
+  }
+  updateBlinkAni() {
+    this.blinkTime += deltaTime;
+    if (this.blinkTime > this.animationFrameTime) {
+      this.blinkState = !this.blinkState;
+      this.blinkTime = 0;
+    }
+    for (let a of this.arr) {
+      a.blink = this.blinkState;
+    }
+  }
+
 }

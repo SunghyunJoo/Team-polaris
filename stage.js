@@ -6,7 +6,7 @@ class stage {
     }
     update() {
         this.stageTimer+=deltaTime;
-        this.
+        // this.
     }
 
     createFormation() {
