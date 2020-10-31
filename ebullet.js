@@ -1,22 +1,26 @@
-class Ebullet
-  {
-  constructor(x,y)
-  {
-    this.x = x;
-    this.y = y;
-    this.r = 6;
-    this.speed = 4;
-  }
 
+function Ebullet(x,y){
+this.x = x;
+this.y = y;
+this.r = 8;
+this.speed = 4;
 
-show(){
-fill(255,255,255);
-rect(this.x ,this.y,this.r,this.r);
+this.show = function (){
+fill(255,0,255);
+image(ebimg,this.x,this.y,this.r*2,this.r*2) 
 }
-update(){
+this.update = function (){
 this.y += this.speed;
 }
-  // hits(player){
-  // return collideRectRect(this.x,this.y,this.r,this.r,player.x,player.y,player.width,player.height);
-  // }
+  this.evaporate = function() {
+    this.toDelete = true;
+  }
+  this.hits  = function(player){
+  var d=dist(this.x,this.y,player.x,player.y);
+    if (d < this.r + player.height) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

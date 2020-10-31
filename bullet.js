@@ -7,8 +7,9 @@ function Bullet(x,y)
   
   this.draw=function()
   {
-    fill(255,255,200);
-   ellipse(this.x,this.y,this.r*2,this.r*2);
+    //fill(255,255,200);
+   //ellipse(this.x,this.y,this.r*2,this.r*2);
+    image(bimg,this.x,this.y,this.r*2,this.r*2) 
   }
   
  

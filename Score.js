@@ -1,31 +1,19 @@
 
-class Score 
-{
-  constructor()
-  {
+class Score{
+constructor(){
+this.p = 0;
+}
 
-    var score = 0;
-    var fired = 0;
-    var allscore = 0;
-    var crash = 0;
-    
-  }
+draw(){
   
-  update(){
-    
-  }
-    
- addScore(score){
-      allscore += score;
-    }
+text("score :"+this.p,20,40);
   
-  addFired(){
-      fired += 1;
-    }
-  addCrash(){
-    crash += 1;
-  }
- 
+}
   
-
+update(){
+  
+this.p += 1;
+  
+}
+  
 }
