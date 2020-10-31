@@ -82,8 +82,11 @@ function draw() {
     if (random(5) < 0.005) {
       ebullets.push(new Ebullet(enemies.arr[i].pos.x, enemies.arr[i].pos.y));
     }
+<<<<<<< HEAD
   
   //print(ebullets);
+=======
+>>>>>>> 2e3ff54... Commit before Pull
 
   for (var g = 0; g < ebullets.length; g++) {
     ebullets[g].show();
