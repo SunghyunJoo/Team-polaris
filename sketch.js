@@ -14,16 +14,16 @@ let lifes;
 let scores;
 var reset;
 
-function preload(){
-  
+function preload() {
+
   pimg = loadImage('image/A.png');
   bimg = loadImage('image/missile1.png');
   ebimg = loadImage('image/missile2.png');
-  
-//   for(var i=1;i<8;i++)
-//   {bumb.push(loadImage('effect/effect'+i+'.png'))}
-  
-//   
+
+  //   for(var i=1;i<8;i++)
+  //   {bumb.push(loadImage('effect/effect'+i+'.png'))}
+
+  //   
 }
 
 function setup() {
@@ -34,7 +34,7 @@ function setup() {
   scores = new Score();
 }
 
-function gameover(){
+function gameover() {
   // ebullets = [];
   // bullets = [];
   // enemies.arr.length = 0;
@@ -55,28 +55,32 @@ function draw() {
       particles.splice(i, 1);
     }
   }
-  
+
   p.draw();
   p.update();
   enemies.update();
   enemies.display();
   scores.draw();
   lifes.draw();
-  
+
   for (let i = 0; i < bullets.length; i++) {
     bullets[i].draw();
     bullets[i].move();
-    for (let v = 0; v < enemies.arr.length; v++)
-    {
-      if (bullets[i].hits(enemies.arr[v])) {
-        enemies.arr.splice(v,1);
-        console.log("You destroyed the enemy ship !");
-        bullets[i].evaporate();
-        scores.update();
-      }
+    if (enemies.collisionCheck(bullets[i].x, bullets[i].y)) {
+      console.log("You destroyed the enemy ship !");
+      bullets[i].evaporate();
+      scores.update();
     }
-    
-    
+    // for (let v = 0; v < enemies.arr.length; v++) {
+    //   if (bullets[i].hits(enemies.arr[v])) {
+    //     enemies.arr.splice(v,1);
+    //     console.log("You destroyed the enemy ship !");
+    //     bullets[i].evaporate();
+    //     scores.update();
+    //   }
+    // }
+
+
   }
 
   for (let i = 0; i < enemies.arr.length; i++)
@@ -87,38 +91,38 @@ function draw() {
   for (var g = 0; g < ebullets.length; g++) {
     ebullets[g].show();
     ebullets[g].update();
-    
 
-      if (ebullets[g].hits(p)) {
-        console.log("You have been attacked by an enemy !");
-        ebullets[g].evaporate();
-        lifes.update();
-        
-        if(lifes.p==0){
-          
-          
-          gameover();
-          console.log("You die !");
 
-        }
-        
+    if (ebullets[g].hits(p)) {
+      console.log("You have been attacked by an enemy !");
+      ebullets[g].evaporate();
+      lifes.update();
+
+      if (lifes.p == 0) {
+
+
+        gameover();
+        console.log("You die !");
+
       }
-    
-  
-}
+
+    }
+
+
+  }
 
   for (var x1 = ebullets.length - 1; x1 >= 0; x1--) {
     if (ebullets[x1].toDelete) {
       ebullets.splice(x1, 1);
     }
   }
-  
+
   for (var x = bullets.length - 1; x >= 0; x--) {
     if (bullets[x].toDelete) {
       bullets.splice(x, 1);
     }
   }
-  
+
 }
 
 function keyPressed() {

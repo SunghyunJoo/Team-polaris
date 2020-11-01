@@ -25,7 +25,7 @@ class enemyArray {
         exit: radians(180),
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
-      hoverStateXOffSet: 0,
+        hoverStateXOffSet: 0,
       },
       {
         tx: 360,
@@ -105,7 +105,7 @@ class enemyArray {
         invertedEntry: false,
         hoverStateXOffSet: 0,
       },
-                      
+
       {
         tx: 260,
         ty: 50,
@@ -504,8 +504,8 @@ class enemyArray {
     for (let a of this.arr)
       a.display();
   }
-  createEnemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert,itr) {
-    this.arr[itr] = new enemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert);
+  createEnemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, itr) {
+    this.arr[itr] = new enemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, false);
   }
   createFormation(sx, sy, delay) {
     for (let i = 0; i < 4; i++) {
@@ -520,26 +520,31 @@ class enemyArray {
       let xOffSet = this.xOffSet;
       let itr = this.iterator;
 
-      this.arr[this.iterator]= new enemy(-100,-100,-100,-100,-100,-100,0,0,0,0);
+      this.arr[this.iterator] = new enemy(-100, -100, -100, -100, -100, -100, 0, 0, 0, 0, true);
       setTimeout(() => {
-        this.createEnemy(sx, sy, tx + xOffSet, ty, cx, cy, entry, exit, rotate, invert,itr);
+        this.createEnemy(sx, sy, tx + xOffSet, ty, cx, cy, entry, exit, rotate, invert, itr);
       }, i * this.spacingInFormation + delay);
       this.iterator++;
     }
   }
   collisionCheck(x, y) {
     let bool = false;
-    for (let i = 0; i < this.arr.length; i++)
-      if (arr[i].pos.x - 5 < x && arr[i].pos.x + 5 > x)
-        if (arr[i].pos.y - 5 < y && arr[i].pos.y + 5 > y) {
+    let bulletHitRange = 20;
+    for (let i = 0; i < this.arr.length; i++) {
+      if (!this.arr[i].isDead) {
+        let v = dist(x, y, this.arr[i].finalPos.x, this.arr[i].finalPos.y);
+        if (v < bulletHitRange) {
           bool = true;
           this.destroyEnemy(i);
           break;
         }
+      }
+    }
     return bool;
   }
   destroyEnemy(index) {
-    this.arr.splice(index, 1);
+    this.arr[index].isDead = true;
+    this.arr[index].changePos(-100, -100);
   }
   updateSpawnOffSet() {
     this.ellapsed += deltaTime;

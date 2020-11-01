@@ -1,5 +1,7 @@
 class enemy {
-  constructor(x, y, tx, ty, cx, cy, entry, exit, rotate, invert) {
+  constructor(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, isDead) {
+    this.isDead = isDead;
+
     this.pos = createVector(x, y);
     this.targetPos = createVector(tx, ty);
     this.xOffSet = 0;
@@ -36,40 +38,43 @@ class enemy {
     this.invert = invert;
   }
   update() {
-    
-    switch (this.state) {
-      case 'spawning':
-        this.finalPos.set(this.pos.x, this.pos.y);
-        this.spawnState();
-        break;
-      case 'hovering':
-        this.hoveringState();
-        this.finalPos.set(this.pos.x + this.xOffSet, this.pos.y);
-        break;
+    if (!this.isDead) {
+      switch (this.state) {
+        case 'spawning':
+          this.finalPos.set(this.pos.x, this.pos.y);
+          this.spawnState();
+          break;
+        case 'hovering':
+          this.hoveringState();
+          this.finalPos.set(this.pos.x + this.xOffSet, this.pos.y);
+          break;
+      }
     }
   }
   display() {
-    if (this.blink)
-      fill(255, 100, 100);
-    else
-      fill(100, 100, 255);
-    strokeWeight(1);
-    circle(this.finalPos.x, this.finalPos.y, 20);
-    let dx = this.finalPos.x + cos(this.angle) * 20;
-    let dy = this.finalPos.y + sin(this.angle) * 20;
-    stroke(255);
-    line(this.finalPos.x, this.finalPos.y, dx, dy);
+    if (!this.isDead) {
+      if (this.blink)
+        fill(255, 100, 100);
+      else
+        fill(100, 100, 255);
+      strokeWeight(1);
+      circle(this.finalPos.x, this.finalPos.y, 20);
+      let dx = this.finalPos.x + cos(this.angle) * 20;
+      let dy = this.finalPos.y + sin(this.angle) * 20;
+      stroke(255);
+      line(this.finalPos.x, this.finalPos.y, dx, dy);
 
-    //     stroke(255);
+      //     stroke(255);
 
-    //     line(this.pos.x, this.pos.y, this.circle.x, this.circle.y);
+      //     line(this.pos.x, this.pos.y, this.circle.x, this.circle.y);
 
-    //     stroke(255);
-    //     strokeWeight(3);
-    noFill();
-    //     circle(this.circle.x, this.circle.y, this.circle.radius);
+      //     stroke(255);
+      //     strokeWeight(3);
+      noFill();
+      //     circle(this.circle.x, this.circle.y, this.circle.radius);
 
-    // square(this.finalPos.x, this.finalPos.y, 25);
+      // square(this.finalPos.x, this.finalPos.y, 25);
+    }
   }
 
   changePos(x, y) {
@@ -78,15 +83,15 @@ class enemy {
     this.calculateAngle();
   }
   calculateAngle() {
-    let idleAngle =270;
-    let hoverRotation =3;
-     if (this.previousPos.x == this.pos.x && this.previousPos.y == this.pos.y) {
-      this.angle = (this.angle+TWO_PI)%TWO_PI;
-      if(this.angle<=radians(idleAngle-2)||this.angle>=radians(idleAngle+2)) {
-        if(this.angle<radians(idleAngle)||this.angle>radians(idleAngle+degrees(PI)))
-          this.angle+=radians(hoverRotation);
+    let idleAngle = 270;
+    let hoverRotation = 3;
+    if (this.previousPos.x == this.pos.x && this.previousPos.y == this.pos.y) {
+      this.angle = (this.angle + TWO_PI) % TWO_PI;
+      if (this.angle <= radians(idleAngle - 2) || this.angle >= radians(idleAngle + 2)) {
+        if (this.angle < radians(idleAngle) || this.angle > radians(idleAngle + degrees(PI)))
+          this.angle += radians(hoverRotation);
         else
-          this.angle-=radians(hoverRotation);
+          this.angle -= radians(hoverRotation);
       }
     } else {
       this.angleVec.set(this.pos.x - this.previousPos.x, this.pos.y - this.previousPos.y);
