@@ -1,8 +1,7 @@
-// let bumb = [];
-// var bb=0
 let pimg;
 let bimg;
 let ebimg;
+let jako,goei,boss1,boss2;
 let particles = [];
 var ebullets = [];
 var players;
@@ -19,11 +18,10 @@ function preload() {
   pimg = loadImage('image/A.png');
   bimg = loadImage('image/missile1.png');
   ebimg = loadImage('image/missile2.png');
-
-  //   for(var i=1;i<8;i++)
-  //   {bumb.push(loadImage('effect/effect'+i+'.png'))}
-
-  //   
+  jako = loadImage('image/character/B.png');
+  goei = loadImage('image/character/C.png');
+  boss1 = loadImage('image/character/D.png');
+  boss2 = loadImage('image/character/E.png');
 }
 
 function setup() {
