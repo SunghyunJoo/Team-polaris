@@ -1,5 +1,3 @@
-// let bumb = [];
-// var bb=0
 let pimg;
 let bimg;
 let ebimg;
@@ -15,19 +13,22 @@ let scores;
 var reset;
 var intro;
 var levels;
+
 function preload() {
 
   pimg = loadImage('image/A.png');
   bimg = loadImage('image/missile1.png');
   ebimg = loadImage('image/missile2.png');
-  
+
   ED = loadSound('sound/ED.mp3')
   ID = loadSound('sound/ID.mp3')
   IS = loadSound('sound/IS.mp3')
   ST = loadSound('sound/ST.mp3')
-  
 
- 
+  jako = loadImage('image/character/B.png');
+  goei = loadImage('image/character/C.png');
+  boss1 = loadImage('image/character/D.png');
+  boss2 = loadImage('image/character/E.png');
 }
 
 function setup() {
@@ -36,18 +37,18 @@ function setup() {
   enemies = new enemyArray();
   lifes = new Life();
   scores = new Score();
-   intro = new Intro();
+  intro = new Intro();
   levels = new Level();
   ST.setVolume(0.25)
   ST.play()
 }
 
 function gameover() {
-  background(0)  
-push()
-textSize(30);
-  textAlign(CENTER, CENTER)  
-text("Game Over",335,285);
+  background(0)
+  push()
+  textSize(30);
+  textAlign(CENTER, CENTER)
+  text("Game Over", 335, 285);
   pop()
   ebullets.length = 1;
 }
@@ -57,14 +58,14 @@ function draw() {
   intro.draw();
   if (lifes.p == 0) {
 
-           
-    
-        gameover();
-        console.log("You die !");
 
-      }
-  
-  
+
+    gameover();
+    console.log("You die !");
+
+  }
+
+
   p.draw();
   p.update();
   enemies.update();
@@ -73,17 +74,15 @@ function draw() {
   lifes.draw();
   levels.draw();
   //stage.update();
-  if(enemies.deathCount==40){
+  if (enemies.deathCount == 40) {
     ST.play()
     levels.update();
 
     console.log("next level!");
-    
+
     enemies = new enemyArray();
-    
-    
-    }
-  
+  }
+
   let p1 = new Particle();
   particles.push(p1);
   for (let i = particles.length - 1; i >= 0; i--) {
@@ -104,9 +103,6 @@ function draw() {
       bullets[i].evaporate();
       scores.update();
     }
-    
-
-
   }
 
   for (let i = 0; i < enemies.arr.length; i++)
@@ -121,16 +117,11 @@ function draw() {
 
     if (ebullets[g].hits(p)) {
       console.log("You have been attacked by an enemy !");
-      ID.setVolume(0.30)   
-      ID.play(); 
+      ID.setVolume(0.30)
+      ID.play();
       ebullets[g].evaporate();
       lifes.update();
-
-      
-
     }
-
-
   }
 
   for (var x1 = ebullets.length - 1; x1 >= 0; x1--) {
@@ -148,10 +139,9 @@ function draw() {
 }
 
 function keyPressed() {
-  if (key == 'Z'||key=='z'||key == 'X'||key=='x') {
+  if (key == 'Z' || key == 'z' || key == 'X' || key == 'x') {
     IS.play()
     var bullet1 = new Bullet(p.x + 25, height - 60);
     bullets.push(bullet1);
   }
-
 }
