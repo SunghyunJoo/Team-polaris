@@ -1,5 +1,5 @@
 class enemy {
-  constructor(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, isDead) {
+  constructor(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, isDead, type) {
     this.isDead = isDead;
 
     this.pos = createVector(x, y);
@@ -13,9 +13,10 @@ class enemy {
 
     this.blink = false;
 
-    this.type;
+    this.type = type;
     this.state = 'spawning' //spawning hovering attacking
     this.spawnState = this.spawn_curve;
+    this.attackState = this.attackStart;
 
     this.circle = {
       x: cx,
@@ -47,6 +48,9 @@ class enemy {
         case 'hovering':
           this.hoveringState();
           this.finalPos.set(this.pos.x + this.xOffSet, this.pos.y);
+          break;
+        case 'attacking':
+          this.attackState();
           break;
       }
     }
@@ -135,7 +139,7 @@ class enemy {
     }
   }
   spawn_form() {
-    this.direction = createVector(this.targetPos.x - this.pos.x, this.targetPos.y - this.pos.y);
+    this.direction = createVector(this.targetPos.x + this.xOffSet - this.pos.x, this.targetPos.y - this.pos.y);
     let length = 10;
     if (this.direction.mag() <= length) {
       this.changePos(this.targetPos.x, this.targetPos.y);
@@ -150,5 +154,54 @@ class enemy {
   hoveringState() {
     this.changePos(this.targetPos.x, this.targetPos.y);
     this.finalPos.set(this.targetPos.x + this.xOffSet, this.targetPos.y);
+  }
+  attackStart() {
+    let downAngle = 90;
+    let rotationSpeed = 3;
+    let attackSpeed = 3;
+    this.angle = (this.angle + TWO_PI) % TWO_PI;
+    if (this.angle <= radians(downAngle - 2) || this.angle >= radians(downAngle + 2)) {
+      if (this.angle < radians(downAngle) || this.angle > radians(downAngle + degrees(PI)))
+        this.angle += radians(rotationSpeed);
+      else
+        this.angle -= radians(rotationSpeed);
+    }
+    let x = cos(this.angle) * attackSpeed;
+    let y = sin(this.angle) * attackSpeed;
+    this.pos.add(x, y);
+    if (this.pos.y > height) {
+      this.attackState = this.attackEnd;
+      this.pos.y = this.pos.y % height;
+    }
+    this.finalPos.set(this.pos.x, this.pos.y);
+  }
+  attackEnd() {
+    this.direction = createVector(this.targetPos.x + this.xOffSet - this.pos.x, this.targetPos.y - this.pos.y);
+    let heading = this.direction.heading();
+    let rotationSpeed = 3;
+    let length = 10;
+    let attackSpeed = 5;
+
+    if (this.direction.mag() <= length) {
+      this.pos.set(this.targetPos.x + this.xOffSet, this.targetPos.y);
+      let px = this.pos.x - cos(this.angle);
+      let py = this.pos.y - sin(this.angle);
+      this.previousPos.set(px,py);
+      this.state = 'hovering';
+      this.attackState = this.attackStart;
+    } else {
+
+      if (this.angle <= radians(degrees(heading) - 2) || this.angle >= radians(degrees(heading) + 2)) {
+        if (this.angle < heading || this.angle > heading + PI)
+          this.angle += radians(rotationSpeed);
+        else
+          this.angle -= radians(rotationSpeed);
+      }
+
+      let x = cos(this.angle) * attackSpeed;
+      let y = sin(this.angle) * attackSpeed;
+      this.pos.add(x, y);
+      this.finalPos.set(this.pos.x, this.pos.y);
+    }
   }
 }

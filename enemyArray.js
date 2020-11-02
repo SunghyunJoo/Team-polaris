@@ -1,6 +1,7 @@
 class enemyArray {
   constructor() {
     this.arr = [];
+    this.deathCount = 0;
 
     this.ellapsed = deltaTime;
     this.animationFrameTime = 750;
@@ -26,6 +27,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 360,
@@ -37,6 +39,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 310,
@@ -48,6 +51,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 360,
@@ -59,6 +63,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
 
       {
@@ -71,6 +76,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 360,
@@ -82,6 +88,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 310,
@@ -93,6 +100,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 360,
@@ -104,6 +112,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
 
       {
@@ -116,6 +125,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'boss',
       },
       {
         tx: 260,
@@ -127,6 +137,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 310,
@@ -138,6 +149,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'boss',
       },
       {
         tx: 410,
@@ -149,6 +161,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 360,
@@ -160,6 +173,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'boss',
       },
       {
         tx: 260,
@@ -171,6 +185,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 410,
@@ -182,6 +197,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'boss',
       },
       {
         tx: 410,
@@ -193,6 +209,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
 
       {
@@ -205,6 +222,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 160,
@@ -216,6 +234,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 510,
@@ -227,6 +246,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 210,
@@ -238,6 +258,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 460,
@@ -249,6 +270,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 160,
@@ -260,6 +282,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 510,
@@ -271,6 +294,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
       {
         tx: 210,
@@ -282,6 +306,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: true,
         hoverStateXOffSet: 0,
+        type: 'goei',
       },
 
       {
@@ -294,6 +319,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 210,
@@ -305,6 +331,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 460,
@@ -316,6 +343,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 260,
@@ -327,6 +355,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 410,
@@ -338,6 +367,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 210,
@@ -349,6 +379,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 460,
@@ -360,6 +391,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 260,
@@ -371,6 +403,7 @@ class enemyArray {
         rotate: radians(-this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
 
       {
@@ -383,6 +416,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 110,
@@ -394,6 +428,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 560,
@@ -405,6 +440,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 160,
@@ -416,6 +452,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 510,
@@ -427,6 +464,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 110,
@@ -438,6 +476,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 560,
@@ -449,6 +488,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
       {
         tx: 160,
@@ -460,6 +500,7 @@ class enemyArray {
         rotate: radians(this.rotationSpeed),
         invertedEntry: false,
         hoverStateXOffSet: 0,
+        type: 'jako',
       },
     ];
     for (let a of this.presetPos) {
@@ -504,8 +545,8 @@ class enemyArray {
     for (let a of this.arr)
       a.display();
   }
-  createEnemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, itr) {
-    this.arr[itr] = new enemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, false);
+  createEnemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, itr, type) {
+    this.arr[itr] = new enemy(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, false, type);
   }
   createFormation(sx, sy, delay) {
     for (let i = 0; i < 4; i++) {
@@ -519,10 +560,11 @@ class enemyArray {
       let invert = this.presetPos[this.iterator].invertedEntry;
       let xOffSet = this.xOffSet;
       let itr = this.iterator;
+      let type = this.presetPos[this.iterator].type;
 
-      this.arr[this.iterator] = new enemy(-100, -100, -100, -100, -100, -100, 0, 0, 0, 0, true);
+      this.arr[this.iterator] = new enemy(-100, -100, -100, -100, -100, -100, 0, 0, 0, 0, true, type);
       setTimeout(() => {
-        this.createEnemy(sx, sy, tx + xOffSet, ty, cx, cy, entry, exit, rotate, invert, itr);
+        this.createEnemy(sx, sy, tx + xOffSet, ty, cx, cy, entry, exit, rotate, invert, itr, type);
       }, i * this.spacingInFormation + delay);
       this.iterator++;
     }
@@ -545,6 +587,7 @@ class enemyArray {
   destroyEnemy(index) {
     this.arr[index].isDead = true;
     this.arr[index].changePos(-100, -100);
+    this.deathCount++;
   }
   updateSpawnOffSet() {
     this.ellapsed += deltaTime;
@@ -587,5 +630,7 @@ class enemyArray {
       a.blink = this.blinkState;
     }
   }
-
+  attackOrder(i) {
+    this.arr[i].state = 'attacking';
+  }
 }
