@@ -1,13 +1,12 @@
-
 class Score 
 {
   constructor()
   {
-    var highscore = 0;
-    var score = 0;
-    var fired = 0;
-    var allscore = 0;
-    var crash = 0;
+    this.highscore = 0;
+    this.score = 0;
+    this.fired = 0;
+    this.allscore = 0;
+    this.crash = 0;
     
   }
   
@@ -16,23 +15,20 @@ class Score
   }
   
   draw(){
-    if(highscore < allscore)
+    if(this.highscore < this.allscore)
       {
-        highscore = allscore;
+        this.highscore = this.allscore;
       }
   }
     
  addScore(score){
-      allscore += score;
+      this.allscore += score;
     }
   
   addFired(){
-      fired += 1;
+      this.fired += 1;
     }
   addCrash(){
-    crash += 1;
-  }
- 
-  
-
+    this.crash += 1;
+  } 
 }

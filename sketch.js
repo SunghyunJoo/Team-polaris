@@ -12,6 +12,7 @@ let enemies;
 let lifes;
 let scores;
 var reset;
+var intro;
 
 function preload() {
 
@@ -30,6 +31,7 @@ function setup() {
   enemies = new enemyArray();
   lifes = new Life();
   scores = new Score();
+   intro = new Intro();
 }
 
 function gameover() {
@@ -43,6 +45,7 @@ function gameover() {
 
 function draw() {
   background(0);
+  intro.draw();
 
   let p1 = new Particle();
   particles.push(p1);
