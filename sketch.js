@@ -1,5 +1,3 @@
-// let bumb = [];
-// var bb=0
 let pimg;
 let bimg;
 let ebimg;
@@ -13,39 +11,58 @@ let enemies;
 let lifes;
 let scores;
 var reset;
-
+var levels;
 function preload() {
 
   pimg = loadImage('image/A.png');
   bimg = loadImage('image/missile1.png');
   ebimg = loadImage('image/missile2.png');
 
-  //   for(var i=1;i<8;i++)
-  //   {bumb.push(loadImage('effect/effect'+i+'.png'))}
-
-  //   
+     
 }
 
 function setup() {
   createCanvas(670, 570);
+   
   p = new Player(width / 2 - 30, height * 9 / 10, 50, 50);
+  //fill(random(255),random(255),random(255),random(255))
   enemies = new enemyArray();
   lifes = new Life();
   scores = new Score();
+  levels = new Level();
 }
 
 function gameover() {
-  // ebullets = [];
-  // bullets = [];
-  // enemies.arr.length = 0;
-  // ebullets.length = 0;
-  // bullets.length = 0;
-  //lifes.p = 999999999;
+background(0)  
+push()
+textSize(30);
+  textAlign(CENTER, CENTER)  
+text("Game Over",335,285);
+  pop()
+  ebullets.length = 1;
+//lifes.p = 'you die';
+  
 }
 
 function draw() {
+  
   background(0);
+  if (lifes.p == 0) {
 
+
+        gameover();
+        console.log("You die !");
+
+      }
+  p.draw();
+  p.update();
+  enemies.update();
+  enemies.display();
+  scores.draw();
+  lifes.draw();
+  levels.draw();
+  
+  
   let p1 = new Particle();
   particles.push(p1);
   for (let i = particles.length - 1; i >= 0; i--) {
@@ -55,13 +72,20 @@ function draw() {
       particles.splice(i, 1);
     }
   }
+  
+  
+  
+  if(enemies.allDead==true){
+    
+    levels.update();
 
-  p.draw();
-  p.update();
-  enemies.update();
-  enemies.display();
-  scores.draw();
-  lifes.draw();
+    console.log("next level!");
+    
+    //enemies = new enemyArray();
+    
+    
+    }
+  
 
   for (let i = 0; i < bullets.length; i++) {
     bullets[i].draw();
@@ -71,23 +95,32 @@ function draw() {
       bullets[i].evaporate();
       scores.update();
     }
-    // for (let v = 0; v < enemies.arr.length; v++) {
-    //   if (bullets[i].hits(enemies.arr[v])) {
-    //     enemies.arr.splice(v,1);
-    //     console.log("You destroyed the enemy ship !");
-    //     bullets[i].evaporate();
-    //     scores.update();
-    //   }
-    // }
+    
+    if(enemies.arr.length==0){
+    
+    levels.update();
+
+    console.log("next level!");
+    
+    bullets.length =0;
+    enemies = new enemyArray();
+    
+    
+    }
 
 
   }
 
-  for (let i = 0; i < enemies.arr.length; i++)
-    if (random(5) < 0.005) {
+  for (let i = 0; i < enemies.arr.length; i++){
+    if (random(0,1) == random(0.00000001)) {
       ebullets.push(new Ebullet(enemies.arr[i].pos.x, enemies.arr[i].pos.y));
     }
-
+  
+  
+    
+  
+  }
+  
   for (var g = 0; g < ebullets.length; g++) {
     ebullets[g].show();
     ebullets[g].update();
@@ -98,13 +131,7 @@ function draw() {
       ebullets[g].evaporate();
       lifes.update();
 
-      if (lifes.p == 0) {
-
-
-        gameover();
-        console.log("You die !");
-
-      }
+      
 
     }
 
@@ -126,7 +153,7 @@ function draw() {
 }
 
 function keyPressed() {
-  if (keyCode === UP_ARROW) {
+  if (key == 'Z'||key=='z') {
     var bullet1 = new Bullet(p.x + 25, height - 60);
     bullets.push(bullet1);
   }

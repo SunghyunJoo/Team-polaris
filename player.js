@@ -12,9 +12,6 @@ constructor(x,y,w,h)
   
   draw()
   {
-  //fill('white');
-  //rect(this.x,this.y,this.width,this.height) 
-    
     
 
     image(pimg,this.x,this.y,this.width,this.height)
