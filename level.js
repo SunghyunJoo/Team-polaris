@@ -3,7 +3,7 @@ function Level(){
   this.draw=function(){
     
   
-  text("level:"+round(this.p/60),20,60);   
+  text("level:"+ this.p,20,60);   
   }
   
   this.update=function(){

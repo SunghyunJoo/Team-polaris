@@ -9,17 +9,12 @@ class Score
     this.crash = 0;
     
   }
-  
-  update(){
-    
-  }
-  
   draw(){
     if(this.highscore < this.allscore)
       {
         this.highscore = this.allscore;
       }
-  }
+  } 
     
  addScore(score){
       this.allscore += score;
