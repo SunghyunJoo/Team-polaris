@@ -57,46 +57,27 @@ class enemy {
   }
   display() {
     if (!this.isDead) {
-        push();
-        imageMode(CENTER);
-        translate(this.finalPos.x, this.finalPos.y);
       if (this.blink)
-        switch(this.type) {
-            case'jako':
-            rotate(this.angle+HALF_PI);
-            image(jako,0,0, 30,30);
-            break;
-            case'goei' :
-            rotate(this.angle+HALF_PI);
-            image(goei,0,0, 30,30);
-            break;
-            case'boss' :
-            rotate(this.angle+HALF_PI);
-            image(boss1,0,0, 30,30);
-            break;
-        }
+        fill(255, 100, 100);
       else
-        switch(this.type) { 
-            case'jako':
-            rotate(this.angle+HALF_PI);
-            image(jako,0,0, 30,30);
-            break;
-            case'goei' :
-            rotate(this.angle+HALF_PI);
-            image(goei,0,0, 30,30);
-            break;
-            case'boss' :
-            rotate(this.angle+HALF_PI);
-            image(boss2,0,0, 30,30);
-            break;
-        }
-      // strokeWeight(1);
-      // circle(this.finalPos.x, this.finalPos.y, 20);
-      // let dx = this.finalPos.x + cos(this.angle) * 20;
-      // let dy = this.finalPos.y + sin(this.angle) * 20;
-      // stroke(255);
-      // line(this.finalPos.x, this.finalPos.y, dx, dy);
-      pop();
+        fill(100, 100, 255);
+      strokeWeight(1);
+      circle(this.finalPos.x, this.finalPos.y, 20);
+      let dx = this.finalPos.x + cos(this.angle) * 20;
+      let dy = this.finalPos.y + sin(this.angle) * 20;
+      stroke(255);
+      line(this.finalPos.x, this.finalPos.y, dx, dy);
+
+      //     stroke(255);
+
+      //     line(this.pos.x, this.pos.y, this.circle.x, this.circle.y);
+
+      //     stroke(255);
+      //     strokeWeight(3);
+      noFill();
+      //     circle(this.circle.x, this.circle.y, this.circle.radius);
+
+      // square(this.finalPos.x, this.finalPos.y, 25);
     }
   }
 

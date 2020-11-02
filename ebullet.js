@@ -17,7 +17,7 @@ this.y += this.speed;
   }
   this.hits  = function(player){
   var d=dist(this.x,this.y,player.x,player.y);
-    if (d < this.r + player.height) {
+    if (d < this.r + player.height-20) {
       return true;
     } else {
       return false;

@@ -1,7 +1,8 @@
+// let bumb = [];
+// var bb=0
 let pimg;
 let bimg;
 let ebimg;
-let jako,goei,boss1,boss2;
 let particles = [];
 var ebullets = [];
 var players;
@@ -12,16 +13,20 @@ let enemies;
 let lifes;
 let scores;
 var reset;
-
+var levels;
 function preload() {
 
   pimg = loadImage('image/A.png');
   bimg = loadImage('image/missile1.png');
   ebimg = loadImage('image/missile2.png');
-  jako = loadImage('image/character/B.png');
-  goei = loadImage('image/character/C.png');
-  boss1 = loadImage('image/character/D.png');
-  boss2 = loadImage('image/character/E.png');
+  
+  ED = loadSound('sound/ED.mp3')
+  ID = loadSound('sound/ID.mp3')
+  IS = loadSound('sound/IS.mp3')
+  ST = loadSound('sound/ST.mp3')
+  
+
+ 
 }
 
 function setup() {
@@ -30,20 +35,54 @@ function setup() {
   enemies = new enemyArray();
   lifes = new Life();
   scores = new Score();
+  levels = new Level();
+  ST.setVolume(0.25)
+  ST.play()
+  
 }
 
 function gameover() {
-  // ebullets = [];
-  // bullets = [];
-  // enemies.arr.length = 0;
-  // ebullets.length = 0;
-  // bullets.length = 0;
-  //lifes.p = 999999999;
+  background(0)  
+push()
+textSize(30);
+  textAlign(CENTER, CENTER)  
+text("Game Over",335,285);
+  pop()
+  ebullets.length = 1;
 }
 
 function draw() {
   background(0);
+  
+  if (lifes.p == 0) {
 
+           
+    
+        gameover();
+        console.log("You die !");
+
+      }
+  
+  
+  p.draw();
+  p.update();
+  enemies.update();
+  enemies.display();
+  scores.draw();
+  lifes.draw();
+  levels.draw();
+  //stage.update();
+  if(enemies.deathCount==40){
+    ST.play()
+    levels.update();
+
+    console.log("next level!");
+    
+    enemies = new enemyArray();
+    
+    
+    }
+  
   let p1 = new Particle();
   particles.push(p1);
   for (let i = particles.length - 1; i >= 0; i--) {
@@ -54,35 +93,23 @@ function draw() {
     }
   }
 
-  p.draw();
-  p.update();
-  enemies.update();
-  enemies.display();
-  scores.draw();
-  lifes.draw();
 
   for (let i = 0; i < bullets.length; i++) {
     bullets[i].draw();
     bullets[i].move();
     if (enemies.collisionCheck(bullets[i].x, bullets[i].y)) {
       console.log("You destroyed the enemy ship !");
+      ED.play()
       bullets[i].evaporate();
       scores.update();
     }
-    // for (let v = 0; v < enemies.arr.length; v++) {
-    //   if (bullets[i].hits(enemies.arr[v])) {
-    //     enemies.arr.splice(v,1);
-    //     console.log("You destroyed the enemy ship !");
-    //     bullets[i].evaporate();
-    //     scores.update();
-    //   }
-    // }
+    
 
 
   }
 
   for (let i = 0; i < enemies.arr.length; i++)
-    if (random(5) < 0.005) {
+    if (random(999999999999999) < 0.000000000001) {
       ebullets.push(new Ebullet(enemies.arr[i].pos.x, enemies.arr[i].pos.y));
     }
 
@@ -93,16 +120,12 @@ function draw() {
 
     if (ebullets[g].hits(p)) {
       console.log("You have been attacked by an enemy !");
+      ID.setVolume(0.30)   
+      ID.play(); 
       ebullets[g].evaporate();
       lifes.update();
 
-      if (lifes.p == 0) {
-
-
-        gameover();
-        console.log("You die !");
-
-      }
+      
 
     }
 
@@ -124,7 +147,8 @@ function draw() {
 }
 
 function keyPressed() {
-  if (keyCode === UP_ARROW) {
+  if (key == 'Z'||key=='z'||key == 'X'||key=='x') {
+    IS.play()
     var bullet1 = new Bullet(p.x + 25, height - 60);
     bullets.push(bullet1);
   }
