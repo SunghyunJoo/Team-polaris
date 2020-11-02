@@ -1,3 +1,9 @@
+// skectch.js
+// Polaris (Galaga)
+// (GAM100)
+// fall 2020
+// sunghyun.joo
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class upinter
   {
     constructor(allscore){

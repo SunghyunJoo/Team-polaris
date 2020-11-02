@@ -1,3 +1,9 @@
+// enemy.js
+// Polaris (Galaga)
+// (GAM100)
+// fall 2020
+// sunwoo.won
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class enemy {
   constructor(x, y, tx, ty, cx, cy, entry, exit, rotate, invert, isDead, type) {
     this.isDead = isDead;

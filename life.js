@@ -1,3 +1,9 @@
+// life.js
+// Polaris (Galaga)
+// (GAM100)
+// fall 2020
+// jaehyeon.nam 
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class Life {
   constructor() {
     this.p = 3;

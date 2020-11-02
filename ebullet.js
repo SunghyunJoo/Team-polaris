@@ -1,4 +1,9 @@
-
+// ebullet.js
+// Polaris (Galaga)
+// (GAM100)
+// fall 2020
+// jaehyeon.nam 
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 function Ebullet(x,y){
 this.x = x;
 this.y = y;

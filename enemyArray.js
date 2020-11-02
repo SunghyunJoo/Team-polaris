@@ -1,7 +1,15 @@
+// enemyArray.js
+// Polaris (Galaga)
+// (GAM100)
+// fall 2020
+// sunwoo.won
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class enemyArray {
   constructor() {
     this.arr = [];
     this.deathCount = 0;
+    ST.play();
+
 
     this.ellapsed = deltaTime;
     this.animationFrameTime = 750;
@@ -537,9 +545,16 @@ class enemyArray {
       a.update();
 
     for (let a of this.arr)
-      if (random(1) < 0.005) {
-        a.shoot();
+      if (a.state == 'spawning' || a.state == 'attacking') {
+        if (random(1) < 0.005) {
+          a.shoot();
+        }
       }
+
+    if (random(1) < 0.0005) {
+      let j = floor(random(40));
+      this.arr[j].state = 'attacking';
+    }
   }
   display() {
     for (let a of this.arr)
