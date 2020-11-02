@@ -23,15 +23,4 @@ function Bullet(x,y)
   this.evaporate = function() {
     this.toDelete = true;
   }
-  
-//   this.hits=function(enemy) {
-    
-//     var b = dist(this.x, this.y, enemy.pos.x, enemy.pos.y);
-//     if (b < this.r + 20) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-    
-//   }
 }
